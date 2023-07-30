@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    div {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    p {
+      font-size: 50px;
+    }
+  </style>
+  <body>
+    <div>
+      <p></p>
+      <button>Random</button>
+    </div>
+    <script>
+      const p = document.querySelector("p");
+      const button = document.querySelector("button");
+
+      button.addEventListener("click", () => {
+        const random = Math.round(Math.random() * 10);
+        p.innerText = "";
+        p.innerText = random;
+      });
+    </script>
+  </body>
+</html>
