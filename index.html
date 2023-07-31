@@ -23,10 +23,26 @@
     }
 
     .content-box {
+      background-color: rgb(37, 37, 37);
+      padding: 20px;
+      width: 300px;
+      height: 300px;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .number-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     p {
-      font-size: 50px;
+      font-size: 100px;
       color: white;
     }
 
@@ -43,22 +59,57 @@
   </style>
   <body>
     <div class="container">
-     <div class="content-box">
-        <p></p>
-      <button>Random</button>
-     </div>
+      <div class="content-box">
+        <div class="number-container">
+          <p></p>
+        </div>
+        <button>Random</button>
+      </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+
     <script>
       const p = document.querySelector("p");
       const button = document.querySelector("button");
 
-      button.addEventListener("click", () => {
-        const random = Math.random() * 10
-        const randomCeil = Math.ceil(random)
-        console.log({random, randomCeil})
-        
+      function getRandomNum() {
+        const random = Math.random() * 10;
+        const randomCeil = Math.ceil(random);
+        console.log({ random, randomCeil });
+
+        return randomCeil;
+      }
+
+      function setRandomNumberAtDOM(number) {
         p.innerText = "";
-        p.innerText = randomCeil;
+        p.innerText = number;
+      }
+
+      let isClicked = false;
+
+      button.addEventListener("click", () => {
+        let i = 0;
+
+        if (!isClicked) {
+          isClicked = true;
+          let interval = setInterval(() => {
+            if (i === 30) {
+              clearInterval(interval);
+              setRandomNumberAtDOM(getRandomNum());
+              const jsConfetti = new JSConfetti();
+              jsConfetti.addConfetti();
+              const audio = new Audio("./finally.mp3");
+              audio.play();
+              isClicked = false;
+            } else {
+              console.log(i);
+              setRandomNumberAtDOM(getRandomNum());
+              const audio = new Audio("./tick.mp3");
+              audio.play();
+              i++;
+            }
+          }, 100);
+        }
       });
     </script>
   </body>
