@@ -49,11 +49,10 @@
 
       button.addEventListener("click", () => {
         const random = Math.random() * 10
-        const randomFixed = random.toFixed(0)
-        console.log({random, randomFixed})
-        console.log()
+        const randomCeil = Math.ceil(random)
+        console.log({random, randomCeil})
         p.innerText = "";
-        p.innerText = random;
+        p.innerText = randomCeil;
       });
     </script>
   </body>
