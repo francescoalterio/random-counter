@@ -48,7 +48,10 @@
       const button = document.querySelector("button");
 
       button.addEventListener("click", () => {
-        const random = Math.round(Math.toFixed(0) * 10);
+        const random = Math.random() * 10
+        const randomFixed = random.toFixed(0)
+        console.log({random, randomFixed})
+        console.log()
         p.innerText = "";
         p.innerText = random;
       });
